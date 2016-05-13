@@ -16,7 +16,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(suppressConstructorProperties = true)
-public class Capture {
+public class Result {
 
     @JsonProperty("data")   private List<Message> data;
     @JsonProperty("meta")   private Map<Object, Object> meta;

@@ -22,7 +22,7 @@ public class Response {
     @JsonProperty("status")         private Integer status;
     @JsonProperty("reason")         private String reason;
     @JsonProperty("size_bytes")     private Integer sizeByte;
-    @JsonProperty("timestamp")      private String timestamp;
+    @JsonProperty("timestamp")      private Double timestamp;
     @JsonProperty("body")           private String body;
     @JsonProperty("body_encoding")  private String bodyEncoding;
 }

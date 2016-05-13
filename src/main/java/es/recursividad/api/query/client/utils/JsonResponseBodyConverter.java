@@ -23,7 +23,7 @@ public class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
     /**
      * Convert a {@link ResponseBody} into a {@link T} object.
      *
-     * @param value Capture body to be converted.
+     * @param value Result body to be converted.
      * @return Java object with the response contentPlaceholder.
      *
      * @throws IOException

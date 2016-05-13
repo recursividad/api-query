@@ -4,6 +4,7 @@ import es.recursividad.api.query.boundary.AuthorizationHeader;
 import es.recursividad.api.query.boundary.BucketPostForm;
 import es.recursividad.api.query.domain.Bucket;
 import es.recursividad.api.query.service.BucketService;
+import es.recursividad.api.query.service.TrafficService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
 public class BucketController {
 
     @Autowired private BucketService bucketService;
+    @Autowired private TrafficService trafficService;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Bucket> registerBucket(
@@ -53,5 +55,11 @@ public class BucketController {
         Bucket bucket = bucketService.getBucket(authorizationHeader.getToken(), bucketId);
 
         return new ResponseEntity<>(bucket, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/sync", method = RequestMethod.POST)
+    public ResponseEntity<?> syncBuckets() {
+        trafficService.capture();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
