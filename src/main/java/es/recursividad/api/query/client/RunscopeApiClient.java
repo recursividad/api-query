@@ -1,6 +1,7 @@
 package es.recursividad.api.query.client;
 
-import es.recursividad.api.query.domain.runscope.Result;
+import es.recursividad.api.query.domain.runscope.ListResult;
+import es.recursividad.api.query.domain.runscope.MessageResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -21,8 +22,8 @@ public interface RunscopeApiClient {
     Call<Map<String, Object>> getBucketInfo(@Header("Authorization") String bearer, @Path("bucketId") String bucketId);
 
     @GET("/buckets/{bucketId}/messages")
-    Call<Result> getMessageStream(@Header("Authorization") String bearer, @Path("bucketId") String bucketId, @Query("since") Double since, @Query("before") Double before);
+    Call<ListResult> getMessageStream(@Header("Authorization") String bearer, @Path("bucketId") String bucketId, @Query("since") Double since, @Query("before") Double before);
 
     @GET("/buckets/{bucketId}/messages/{messageId}")
-    Call<Map<String, Object>> getMessageDetails(@Header("Authorization") String bearer, @Path("bucketId") String bucketId, @Path("messageId") String messageId);
+    Call<MessageResult> getMessageDetails(@Header("Authorization") String bearer, @Path("bucketId") String bucketId, @Path("messageId") String messageId);
 }

@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,9 +15,9 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(suppressConstructorProperties = true)
-public class Result {
+public class MessageResult {
 
-    @JsonProperty("data")   private List<Message> data;
+    @JsonProperty("data")   private Message data;
     @JsonProperty("meta")   private Map<Object, Object> meta;
     @JsonProperty("error")  private Map<Object, Object> error;
 }
