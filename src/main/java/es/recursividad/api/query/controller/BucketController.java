@@ -57,9 +57,14 @@ public class BucketController {
         return new ResponseEntity<>(bucket, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/sync", method = RequestMethod.POST)
-    public ResponseEntity<?> syncBuckets() {
-        trafficService.capture();
-        return new ResponseEntity<>(HttpStatus.OK);
+    @RequestMapping(value = "/{bucketId}/sync", method = RequestMethod.POST)
+    public ResponseEntity<?> syncBuckets(
+            @RequestHeader(name = "Authorization", required = true) AuthorizationHeader authorizationHeader,
+            @PathVariable("bucketId") String bucketId) {
+
+        // Sync the bucket in background
+        ((Runnable) () -> trafficService.captureBucketTraffic(authorizationHeader.getToken(), bucketId)).run();
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

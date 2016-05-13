@@ -26,14 +26,26 @@ public class TrafficService {
     @Autowired private RunscopeApiClient runscopeApiClient;
     @Autowired private MessageService messageService;
 
+    public void captureBucketTraffic(String token, String bucketId) {
+        // Get the requested bucket
+        Bucket bucket = bucketService.getBucket(token, bucketId);
+
+        // Check the bucket exists
+        if (bucket != null) {
+            // Capture the bucket traffic
+            getBucketTraffic(bucket);
+            messageService.getBucketMessageDetails(bucket);
+        }
+    }
+
     /**
      * Capture all the traffic for every registered bucket.
      */
-    public void capture() {
+    public void captureAllTraffic() {
         // Get all the buckets
         List<Bucket> buckets = bucketService.getAllBuckets();
 
-        // For each bucket capture the new traffic
+        // For each bucket captureAllTraffic the new traffic
         for (Bucket bucket : buckets) {
             getBucketTraffic(bucket);
             messageService.getBucketMessageDetails(bucket);
