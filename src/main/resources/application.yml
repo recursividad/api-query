@@ -1,8 +1,8 @@
 spring:
   data:
     mongodb:
-      host: "ds055885.mlab.com"
-      port: 55885
+      host: "localhost"
+      port: 27017
       database: "api-query"
-      username: "dbuser"
-      password: "11332244"
+      username: ""
+      password: ""
